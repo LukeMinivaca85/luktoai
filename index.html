@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>LuktoAI | Inteligência Artificial da Lukintosh</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #0d1117;
+      color: #f0f6fc;
+    }
+
+    header {
+      background: #000;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #21262d;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #00ff88;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .chatbox {
+      background: #161b22;
+      border-radius: 12px;
+      padding: 20px;
+      height: 500px;
+      overflow-y: auto;
+      box-shadow: 0 0 10px #00000060;
+    }
+
+    .msg {
+      margin-bottom: 16px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .msg.luktoai .bubble {
+      background: #00ff8844;
+      padding: 12px;
+      border-radius: 12px;
+      max-width: 70%;
+    }
+
+    .msg.user .bubble {
+      background: #238636;
+      padding: 12px;
+      border-radius: 12px;
+      align-self: flex-end;
+      max-width: 70%;
+      margin-left: auto;
+    }
+
+    .input-area {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      background: #21262d;
+      color: #f0f6fc;
+    }
+
+    button {
+      background: #00ff88;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      color: #000;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #00e673;
+    }
+
+    footer {
+      text-align: center;
+      margin: 40px 0 20px;
+      color: #555;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>LuktoAI • A Mente da Lukintosh</h1>
+</header>
+
+<main>
+  <div class="chatbox" id="chat">
+    <div class="msg luktoai">
+      <div class="bubble">Olá! Eu sou a LuktoAI, sua parceira oficial da Lukintosh. Em que posso te ajudar hoje?</div>
+    </div>
+  </div>
+
+  <div class="input-area">
+    <input type="text" id="userInput" placeholder="Digite sua pergunta..." />
+    <button onclick="sendMsg()">Enviar</button>
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 Lukintosh Corporation. Desenvolvido com 💚 pela Lukintosh.
+</footer>
+
+<script>
+  const chat = document.getElementById("chat");
+  const input = document.getElementById("userInput");
+
+  function sendMsg() {
+    const userText = input.value.trim();
+    if (userText === "") return;
+
+    // Mostra mensagem do usuário
+    const userMsg = document.createElement("div");
+    userMsg.className = "msg user";
+    userMsg.innerHTML = `<div class="bubble">${userText}</div>`;
+    chat.appendChild(userMsg);
+
+    // Resposta da IA (fake por enquanto)
+    setTimeout(() => {
+      const luktoMsg = document.createElement("div");
+      luktoMsg.className = "msg luktoai";
+
+      const respostas = [
+        "Essa funcionalidade está em desenvolvimento. Fique ligado!",
+        "Você pode acessar a documentação da LuktoAI em breve aqui no portal.",
+        "Legal sua pergunta! Em breve terei respostas reais para isso 😉",
+        "Sou uma IA experimental da Lukintosh. Estou aqui para crescer junto com você.",
+        "Por enquanto sou apenas uma simulação, mas em breve responderei tudo em tempo real!"
+      ];
+
+      const respostaAleatoria = respostas[Math.floor(Math.random() * respostas.length)];
+
+      luktoMsg.innerHTML = `<div class="bubble">${respostaAleatoria}</div>`;
+      chat.appendChild(luktoMsg);
+      chat.scrollTop = chat.scrollHeight;
+    }, 1000);
+
+    input.value = "";
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") sendMsg();
+  });
+</script>
+
+</body>
+</html>
